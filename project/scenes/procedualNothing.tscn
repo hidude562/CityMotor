@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpn5qepay4u2m"]
+
+[ext_resource type="ArrayMesh" uid="uid://db1je7healte4" path="res://scenes/Objects/Tiles/1x1/grass.obj" id="1_k8pag"]
+
+[node name="ProcedualTile" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_k8pag")

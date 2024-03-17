@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://e7agn1n44wvc"]
+
+[ext_resource type="Script" path="res://scripts/procedualBuilding.gd" id="1_megte"]
+[ext_resource type="ArrayMesh" uid="uid://djmbb7s0m828d" path="res://scenes/Objects/Buildings/base.obj" id="2_rmyqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubn1b"]
+albedo_color = Color(0, 0.631373, 0.282353, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60b57"]
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_megte")
+
+[node name="0" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_rmyqv")
+surface_material_override/0 = SubResource("StandardMaterial3D_ubn1b")
+
+[node name="1" type="MeshInstance3D" parent="."]
+visible = false
+mesh = ExtResource("2_rmyqv")
+surface_material_override/0 = SubResource("StandardMaterial3D_60b57")

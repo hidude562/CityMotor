@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7witybydb011"]
+
+[ext_resource type="Script" path="res://scripts/cityGen.gd" id="1_3jisa"]
+[ext_resource type="Script" path="res://scripts/Level.gd" id="2_765dh"]
+[ext_resource type="Script" path="res://scripts/CharacterBody3D.gd" id="3_cnu4f"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dtoql"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2.00001, 1e-05, 2.00001),
+"attribute_data": PackedByteArray(255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(254, 255, 0, 0, 254, 255, 255, 191, 0, 0, 0, 0, 254, 255, 255, 191, 254, 255, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
+}]
+
+[node name="root" type="Node3D"]
+script = ExtResource("1_3jisa")
+
+[node name="RoadBaseTest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175766, -1.68873, -0.562963)
+mesh = SubResource("ArrayMesh_dtoql")
+
+[node name="Level" type="Node" parent="."]
+script = ExtResource("2_765dh")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("3_cnu4f")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.612372, -0.707107, 0.353553, -0.126827, 0.353553, 0.926777, -0.78033, -0.612373, 0.126826, 0, 2, 0)

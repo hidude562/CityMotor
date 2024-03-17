@@ -1,0 +1,112 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3b2k1ee765fx"]
+
+[ext_resource type="ArrayMesh" uid="uid://t4qi2xg2i2jb" path="res://scenes/Objects/Roads/Small/4 way intersection.obj" id="1_ri46c"]
+[ext_resource type="ArrayMesh" uid="uid://cg6m8ncolbwxu" path="res://scenes/Objects/Roads/Small/3 way intersection.obj" id="2_ylfxs"]
+[ext_resource type="ArrayMesh" uid="uid://cjwkaat2m07q" path="res://scenes/Objects/Roads/Small/bend.obj" id="3_jvfur"]
+[ext_resource type="ArrayMesh" uid="uid://b0ttpsvhamdfu" path="res://scenes/Objects/Roads/Small/straight.obj" id="4_jvkek"]
+
+[node name="ProcedualRoad" type="Node3D"]
+
+[node name="00" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="00"]
+mesh = ExtResource("1_ri46c")
+
+[node name="01" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="01"]
+mesh = ExtResource("2_ylfxs")
+
+[node name="02" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="02"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("2_ylfxs")
+
+[node name="03" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="03"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("3_jvfur")
+
+[node name="10" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="10"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("2_ylfxs")
+
+[node name="11" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="11"]
+mesh = ExtResource("4_jvkek")
+
+[node name="12" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="12"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("3_jvfur")
+
+[node name="13" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="13"]
+mesh = ExtResource("1_ri46c")
+
+[node name="20" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="20"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("2_ylfxs")
+
+[node name="21" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="21"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("3_jvfur")
+
+[node name="22" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="22"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("4_jvkek")
+
+[node name="23" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="23"]
+mesh = ExtResource("1_ri46c")
+
+[node name="30" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="30"]
+mesh = ExtResource("3_jvfur")
+
+[node name="31" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="31"]
+mesh = ExtResource("4_jvkek")
+
+[node name="32" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="32"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = ExtResource("4_jvkek")
+
+[node name="33" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="33"]
+mesh = ExtResource("1_ri46c")
