@@ -176,7 +176,7 @@ func drawBuilding(length, height, width, sector):
 	var residentialLowDensityPreset = FullBuildingPrefab.new(
 		[
 			BuildingSectionPrefab.new(-1,0,1,2,5,0.1,0.2,1000),
-			gabledRoof
+			#gabledRoof
 		]
 	)
 	
@@ -190,7 +190,7 @@ func drawBuilding(length, height, width, sector):
 	else:
 		if sector == 0:
 			ruleset = 2
-			height+=1
+			#height+=1
 		else:
 			ruleset = 1
 		

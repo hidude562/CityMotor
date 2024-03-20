@@ -55,7 +55,7 @@ func _ready():
 				add_child(instance)
 				instance.global_position = Vector3(i, 0, j)
 			elif map.tiles[j][i].tile == 2 and map.tiles[j][i].sourceTile:
-				var scene = procedualBuildingHQ
+				var scene = procedualBuilding
 				var instance = scene.instantiate()
 				add_child(instance)
 				instance.global_position = Vector3(i, 0, j)

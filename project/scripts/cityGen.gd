@@ -68,7 +68,7 @@ class RoadBuilder:
 	var singlePopulusMultiplier = 2.5
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=2.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=17.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation
@@ -141,18 +141,22 @@ class RoadBuilder:
 			y+=1
 		
 	func getRandomIfOffbranch():
-		if(totalIterations < 3):
+		var probabilityOf4Size = int((40 / populus) + 1)
+		var probabilityOf6Size = 4
+		var probabilityOf8Size = 2
+		
+		if(totalIterations < 4):
 			pass
-		elif(totalIterations < 4):
-			if(randi()%4 == 0):
+		elif(totalIterations == 4):
+			if(randi()%probabilityOf4Size == 0):
 				return true
-		elif(totalIterations < 5):
-			if(randi()%3 == 0):
+		elif(totalIterations == 6):
+			if(randi()%probabilityOf6Size == 0):
 				return true
-		elif(totalIterations < 6):
-			if(randi()%2 == 0):
+		elif(totalIterations == 8):
+			if(randi()%probabilityOf8Size == 0):
 				return true
-		elif(totalIterations < 7):
+		elif(totalIterations == 10):
 			return true
 		return false
 	
@@ -301,6 +305,10 @@ class City extends Node:
 		var scaledPopulus = getTile(x,y).populus ** 1.2
 		return randf_range(0.0, 60.0/scaledPopulus + 1) < 1.0
 	
+	func copyTileToAnother(tile1: Vector2i, tile2: Vector2i):
+		# TODO: Implement a method that copies the properties of one to anther
+		pass
+	
 	func randomBuildingExpand(x,y):
 		var density = getTile(x,y).populus
 		
@@ -308,7 +316,7 @@ class City extends Node:
 		# If high density, wider buildings are more likely
 		
 		
-		var probabilityForMaxSize = 0 #1.08 ** x 
+		var probabilityForMaxSize = 1.8 ** x 
 		var probabilityForMedSize = (1.03 ** x) * 2
 		var probabilityForNoSize  = (0.98 ** x) * 4
 		
@@ -316,19 +324,78 @@ class City extends Node:
 		
 		var randomNum = randf_range(0.0, totalProbability)
 		if(randomNum < probabilityForMaxSize):
-			for y2 in range(y-1,y+2):
-				for x2 in range(x-1,x+2):
-					var tile = getTile(x2,y2)
-					if(tile):
-						if tile.tile == 0:
-							tiles[y2][x2].id = tiles[y][x].id
-							tiles[y2][x2].tile = tiles[y][x].tile
-							tiles[y2][x2].sector = tiles[y][x].sector
-							tiles[y2][x2].sourceTile = false
-							tiles[y2][x2].populus = tiles[y][x].populus
-							tiles[y2][x2].height = tiles[y][x].height
-							tiles[y2][x2].size = tiles[y][x].size
-							tiles[y2][x2].buildingType = tiles[y][x].buildingType
+			var canDoRight  = false
+			var canDoLeft   = false
+			var canDoUp     = false
+			var canDoDown   = false
+			
+			if(getTile(x+1,y)):
+				if(getTile(x+1,y).tile == 0):
+					canDoRight = true
+			if(getTile(x-1,y)):
+				if(getTile(x-1,y).tile == 0):
+					canDoLeft = true
+			if(getTile(x,y-1)):
+				if(getTile(x,y-1).tile == 0):
+					canDoUp = true
+			if(getTile(x,y+1)):
+				if(getTile(x,y+1).tile == 0):
+					canDoDown = true
+			
+			var movementVector = Vector2i()
+			if(canDoUp and canDoRight):
+				movementVector = Vector2i(1,-1)
+			elif(canDoDown and canDoLeft):
+				movementVector = Vector2i(-1,1)
+			
+			var x2 = x
+			var y2 = y
+			var iter = 1
+			while(true):
+				x2+=movementVector.x
+				y2+=movementVector.y
+				if(getTile(x2,y2).tile == 0):
+					var isContinuous = true
+					var x3 = x2
+					var y3 = y2
+					for i in range(iter):
+						y3-=movementVector.y
+						x3-=movementVector.x
+						if(getTile(x2,y3).tile != 0):
+							isContinuous = false
+						if(getTile(x3,y2).tile != 0):
+							isContinuous = false
+					x3 = x2
+					y3 = y2
+					# TODO: fix speghetti
+					if(isContinuous):
+						for i in range(iter):
+							
+							tiles[y3][x2].id = tiles[y][x].id
+							tiles[y3][x2].tile = tiles[y][x].tile
+							tiles[y3][x2].sourceTile = false
+							tiles[y3][x2].sector = tiles[y][x].sector
+							tiles[y3][x2].populus = tiles[y][x].populus
+							tiles[y3][x2].height = tiles[y][x].height
+							tiles[y3][x2].size = tiles[y][x].size
+							tiles[y3][x2].buildingType = tiles[y][x].buildingType
+							
+							tiles[y2][x3].id = tiles[y][x].id
+							tiles[y2][x3].tile = tiles[y][x].tile
+							tiles[y2][x3].sourceTile = false
+							tiles[y2][x3].sector = tiles[y][x].sector
+							tiles[y2][x3].populus = tiles[y][x].populus
+							tiles[y2][x3].height = tiles[y][x].height
+							tiles[y2][x3].size = tiles[y][x].size
+							tiles[y2][x3].buildingType = tiles[y][x].buildingType
+							
+							y3-=movementVector.y
+							x3-=movementVector.x
+					else:
+						break
+				else:
+					break
+				iter+=1
 		elif(randomNum < probabilityForMaxSize + probabilityForMedSize):
 			var canDoRight  = false
 			var canDoLeft   = false
