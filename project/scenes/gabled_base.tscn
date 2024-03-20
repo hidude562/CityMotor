@@ -1,0 +1,353 @@
+[gd_scene load_steps=8 format=3 uid="uid://p4xbsmiq70th"]
+
+[ext_resource type="ArrayMesh" uid="uid://blwt6ek5neg0o" path="res://scenes/Objects/Buildings/gabledBase.obj" id="1_gbrkn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gjrn2"]
+transparency = 1
+shading_mode = 0
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_x2jvp"]
+
+[sub_resource type="Image" id="Image_u3kpy"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 31, 4, 4, 4, 55, 102, 102, 102, 97, 101, 101, 101, 96, 4, 4, 4, 54, 0, 0, 0, 30, 0, 0, 0, 1, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 8, 24, 24, 24, 62, 204, 204, 204, 173, 252, 250, 250, 248, 255, 255, 255, 255, 255, 255, 255, 255, 252, 250, 250, 247, 199, 199, 199, 168, 21, 21, 21, 60, 0, 0, 0, 8, 255, 255, 255, 0, 0, 0, 0, 1, 24, 24, 24, 62, 238, 236, 236, 219, 255, 254, 254, 255, 255, 192, 192, 255, 255, 150, 150, 255, 255, 150, 150, 255, 255, 193, 193, 255, 255, 254, 254, 255, 237, 234, 234, 217, 21, 21, 21, 60, 0, 0, 0, 1, 0, 0, 0, 31, 203, 203, 203, 171, 255, 254, 254, 255, 255, 138, 138, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 140, 140, 255, 255, 255, 255, 255, 197, 197, 197, 166, 0, 0, 0, 30, 4, 4, 4, 55, 252, 250, 250, 248, 255, 191, 191, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 196, 196, 255, 250, 248, 248, 245, 0, 0, 0, 53, 102, 102, 102, 97, 255, 255, 255, 255, 255, 150, 150, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 152, 152, 255, 255, 255, 255, 255, 97, 97, 97, 95, 101, 101, 101, 96, 255, 255, 255, 255, 255, 150, 150, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 153, 153, 255, 255, 255, 255, 255, 97, 97, 97, 95, 4, 4, 4, 54, 252, 250, 250, 247, 255, 193, 193, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 198, 198, 255, 250, 248, 248, 245, 0, 0, 0, 53, 0, 0, 0, 30, 199, 199, 199, 168, 255, 254, 254, 255, 255, 140, 140, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 95, 95, 255, 255, 144, 144, 255, 255, 255, 255, 255, 196, 196, 196, 164, 0, 0, 0, 30, 0, 0, 0, 1, 21, 21, 21, 60, 237, 234, 234, 217, 255, 255, 255, 255, 255, 196, 196, 255, 255, 152, 152, 255, 255, 153, 153, 255, 255, 198, 198, 255, 255, 255, 255, 255, 235, 233, 233, 214, 17, 17, 17, 59, 0, 0, 0, 1, 255, 255, 255, 0, 0, 0, 0, 8, 21, 21, 21, 60, 197, 197, 197, 166, 250, 248, 248, 245, 255, 255, 255, 255, 255, 255, 255, 255, 250, 248, 248, 244, 194, 194, 194, 163, 17, 17, 17, 59, 0, 0, 0, 8, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 0, 53, 97, 97, 97, 95, 97, 97, 97, 95, 0, 0, 0, 53, 0, 0, 0, 30, 0, 0, 0, 1, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 12,
+"mipmaps": false,
+"width": 12
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_b72kv"]
+image = SubResource("Image_u3kpy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1kcv"]
+transparency = 1
+shading_mode = 0
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("ImageTexture_b72kv")
+use_point_size = true
+point_size = 12.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wskgx"]
+_surfaces = [{
+"aabb": AABB(0, 0, 0, 1, 1, 1e-05),
+"format": 34359738369,
+"material": SubResource("StandardMaterial3D_w1kcv"),
+"primitive": 0,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0)
+}]
+
+[node name="gabledBase" type="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, 0, -0.5)
+mesh = ExtResource("1_gbrkn")
+
+[node name="inset0" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0, 0, 1, -1, 0, 0, 0, -15.99, 0, 1, 1, -2.98023e-08)
+visible = false
+operation = 2
+depth = 0.01
+
+[node name="inset45" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-0.707107, -1.19317e-06, 0.707107, -0.707107, -4.94229e-07, -0.707107, 7.462e-08, -15.99, -3.09086e-08, 1.35, 0.35, 0)
+visible = false
+operation = 2
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="inset45"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset45/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="inset90" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-1, -1.39789e-06, -4.37114e-08, 4.37114e-08, 3.05519e-14, -1, 8.74228e-08, -15.99, 1.91069e-15, 1, 0, 0)
+visible = false
+operation = 2
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="inset90"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset90/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="inset135" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-0.707107, -1.19317e-06, -0.707107, 0.707107, 4.94229e-07, -0.707107, 7.462e-08, -15.99, 3.09086e-08, 0.35, -0.35, 0)
+visible = false
+operation = 2
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="inset135"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset135/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_102269" type="MeshInstance3D" parent="inset135"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset135/_MeshInstance3D_102269"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="inset180" type="CSGPolygon3D" parent="."]
+transform = Transform3D(8.74228e-08, -6.98945e-07, -1, 1, 6.98945e-07, 8.74228e-08, 4.37114e-08, -15.99, 4.37114e-08, 0, 0, 0)
+visible = false
+operation = 2
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="inset180"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset180/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="inset225" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.707107, -2.04716e-07, -0.707107, 0.707107, 4.94229e-07, 0.707107, 1.28028e-08, -15.99, 3.09086e-08, -0.355, 0.65, 0)
+visible = false
+operation = 2
+snap = 0.0001
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="inset225"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset225/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_102269" type="MeshInstance3D" parent="inset225"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset225/_MeshInstance3D_102269"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="inset270" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, -1.19249e-08, 1.19249e-08, 0, 1, 0, -15.99, 0, 0, 1, 0)
+visible = false
+operation = 2
+snap = 0.0001
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="inset270"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset270/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_102269" type="MeshInstance3D" parent="inset270"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset270/_MeshInstance3D_102269"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_106040" type="MeshInstance3D" parent="inset270"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset270/_MeshInstance3D_106040"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="inset315" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.707107, -2.04729e-07, 0.707107, -0.707107, -4.9426e-07, 0.707107, 1.28028e-08, -15.991, -3.09086e-08, 0.65, 1.35, 0)
+visible = false
+operation = 2
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="inset315"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset315/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_84982" type="MeshInstance3D" parent="inset315"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="inset315/_MeshInstance3D_84982"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="cornerInset0" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, -1.19249e-08, 1.19249e-08, 0, 1, 0, -15.99, 0, -0.5, 1, 0)
+visible = false
+operation = 2
+snap = 0.0001
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="cornerInset0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset0/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_102269" type="MeshInstance3D" parent="cornerInset0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset0/_MeshInstance3D_102269"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_106040" type="MeshInstance3D" parent="cornerInset0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset0/_MeshInstance3D_106040"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="cornerInset1" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-3.17865e-08, 6.98945e-07, 1, -1, -6.98945e-07, -3.17865e-08, 4.37114e-08, -15.99, 4.37114e-08, 1, 1.5, 1.77636e-15)
+visible = false
+operation = 2
+snap = 0.0001
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="cornerInset1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset1/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_102269" type="MeshInstance3D" parent="cornerInset1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset1/_MeshInstance3D_102269"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_106040" type="MeshInstance3D" parent="cornerInset1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset1/_MeshInstance3D_106040"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="cornerInset2" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-1, -5.68434e-14, -7.54979e-08, 7.54979e-08, -1.39789e-06, -1, 3.80531e-15, -15.99, 8.74228e-08, 1.5, 0, 0)
+visible = false
+operation = 2
+snap = 0.0001
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="cornerInset2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset2/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_102269" type="MeshInstance3D" parent="cornerInset2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset2/_MeshInstance3D_102269"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_106040" type="MeshInstance3D" parent="cornerInset2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset2/_MeshInstance3D_106040"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="cornerInset3" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1.19209e-07, -6.98945e-07, -1, 1, -6.98945e-07, 1.19209e-07, -4.37114e-08, -15.99, 4.37114e-08, 0, -0.5, 0)
+visible = false
+operation = 2
+snap = 0.0001
+depth = 0.01
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="cornerInset3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset3/_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_102269" type="MeshInstance3D" parent="cornerInset3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset3/_MeshInstance3D_102269"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_106040" type="MeshInstance3D" parent="cornerInset3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="cornerInset3/_MeshInstance3D_106040"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")
+
+[node name="_MeshInstance3D_45393" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+visible = false
+material_override = SubResource("StandardMaterial3D_gjrn2")
+mesh = SubResource("ImmediateMesh_x2jvp")
+
+[node name="_MeshInstance3D_13528" type="MeshInstance3D" parent="_MeshInstance3D_45393"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05)
+mesh = SubResource("ArrayMesh_wskgx")

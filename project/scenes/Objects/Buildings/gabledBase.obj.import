@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://blwt6ek5neg0o"
+path="res://.godot/imported/gabledBase.obj-27ecce3696f63780fa5f410e3b20be2b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gabledBase.obj-27ecce3696f63780fa5f410e3b20be2b.mesh"]
+
+source_file="res://scenes/Objects/Buildings/gabledBase.obj"
+dest_files=["res://.godot/imported/gabledBase.obj-27ecce3696f63780fa5f410e3b20be2b.mesh", "res://.godot/imported/gabledBase.obj-27ecce3696f63780fa5f410e3b20be2b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

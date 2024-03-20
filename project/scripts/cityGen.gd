@@ -21,6 +21,7 @@ class CityTile:
 	
 	# 0 is residential, 1 is commercial
 	var sector = 0
+	
 	var height = 0
 	
 	var size = Vector2i(1,1)
@@ -67,7 +68,7 @@ class RoadBuilder:
 	var singlePopulusMultiplier = 2.5
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=15.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=2.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation

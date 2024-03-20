@@ -1,6 +1,7 @@
 extends Node
 
 var procedualBuilding = preload("res://scenes/procedualBuilding.tscn")
+var procedualBuildingHQ = preload("res://scenes/procedualBuildingHQ.tscn")
 var procedualRoad = preload("res://scenes/procedualRoad.tscn")
 var procedualNothing = preload("res://scenes/procedualNothing.tscn")
 
@@ -10,7 +11,7 @@ func _ready():
 	var map = Globals.currentCity
 	
 	if Globals.currentCity == null:
-		map = get_node("/root/root").City.new(20, 20, -1)
+		map = get_node("/root/root").City.new(30, 30, -1)
 		Globals.currentCity = map
 	map.debugDrawMap()
 	
@@ -54,7 +55,7 @@ func _ready():
 				add_child(instance)
 				instance.global_position = Vector3(i, 0, j)
 			elif map.tiles[j][i].tile == 2 and map.tiles[j][i].sourceTile:
-				var scene = procedualBuilding
+				var scene = procedualBuildingHQ
 				var instance = scene.instantiate()
 				add_child(instance)
 				instance.global_position = Vector3(i, 0, j)
