@@ -255,9 +255,9 @@ class City extends Node:
 						repr=" "
 					2:
 						if x.sourceTile:
-							repr="B"
+							repr=str(x.id%10)
 						else:
-							repr="F"
+							repr=str(x.id%10)
 					3:
 						repr="P"
 				str += repr + " "
@@ -343,10 +343,21 @@ class City extends Node:
 					canDoDown = true
 			
 			var movementVector = Vector2i()
+			var numMovementPossibilities = 0
 			if(canDoUp and canDoRight):
 				movementVector = Vector2i(1,-1)
+				numMovementPossibilities+=1
 			elif(canDoDown and canDoLeft):
 				movementVector = Vector2i(-1,1)
+				numMovementPossibilities+=1
+			elif(canDoDown and canDoRight):
+				movementVector = Vector2i(1,1)
+				numMovementPossibilities+=1
+			elif(canDoUp and canDoLeft):
+				movementVector = Vector2i(-1,-1)
+				numMovementPossibilities+=1
+			else:
+				randomBuildingExpand(x,y)
 			
 			var x2 = x
 			var y2 = y
@@ -370,7 +381,8 @@ class City extends Node:
 					# TODO: fix speghetti
 					if(isContinuous):
 						for i in range(iter):
-							
+							y3-=movementVector.y
+							x3-=movementVector.x
 							tiles[y3][x2].id = tiles[y][x].id
 							tiles[y3][x2].tile = tiles[y][x].tile
 							tiles[y3][x2].sourceTile = false
@@ -389,8 +401,7 @@ class City extends Node:
 							tiles[y2][x3].size = tiles[y][x].size
 							tiles[y2][x3].buildingType = tiles[y][x].buildingType
 							
-							y3-=movementVector.y
-							x3-=movementVector.x
+							
 					else:
 						break
 				else:
@@ -565,5 +576,4 @@ class City extends Node:
 			if (denisty != -1):
 				if(roadBuildingIter > denisty):
 					break
-			debugDrawMap()
 
