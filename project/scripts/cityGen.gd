@@ -68,7 +68,7 @@ class RoadBuilder:
 	var singlePopulusMultiplier = 2.5
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=17.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=15.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation
@@ -141,22 +141,22 @@ class RoadBuilder:
 			y+=1
 		
 	func getRandomIfOffbranch():
-		var probabilityOf4Size = int((40 / populus) + 1)
-		var probabilityOf6Size = 4
-		var probabilityOf8Size = 2
+		var probabilityOf3Size = 400
+		var probabilityOf5Size = (1.0 / sqrt(populus)) + 1
+		var probabilityOf7Size = 4
 		
-		if(totalIterations < 4):
+		if(totalIterations < 3):
 			pass
-		elif(totalIterations == 4):
-			if(randi()%probabilityOf4Size == 0):
+		elif(totalIterations == 3):
+			if(randf_range(0,probabilityOf3Size) < 1.0):
 				return true
-		elif(totalIterations == 6):
-			if(randi()%probabilityOf6Size == 0):
+		elif(totalIterations == 5):
+			if(randf_range(0,probabilityOf5Size) < 1.0):
 				return true
-		elif(totalIterations == 8):
-			if(randi()%probabilityOf8Size == 0):
+		elif(totalIterations == 7):
+			if(randf_range(0,probabilityOf7Size) < 1.0):
 				return true
-		elif(totalIterations == 10):
+		elif(totalIterations == 9):
 			return true
 		return false
 	
@@ -309,21 +309,21 @@ class City extends Node:
 		# TODO: Implement a method that copies the properties of one to anther
 		pass
 	
-	func randomBuildingExpand(x,y):
+	func randomBuildingExpand(x,y,forceSize=-1):
 		var density = getTile(x,y).populus
 		
 		# A few types of buildings
 		# If high density, wider buildings are more likely
 		
 		
-		var probabilityForMaxSize = 1.8 ** x 
+		var probabilityForMaxSize = 1.08 ** x 
 		var probabilityForMedSize = (1.03 ** x) * 2
 		var probabilityForNoSize  = (0.98 ** x) * 4
 		
-		var totalProbability = probabilityForMaxSize + probabilityForMaxSize + probabilityForNoSize
+		var totalProbability = probabilityForMaxSize + probabilityForMedSize + probabilityForNoSize
 		
 		var randomNum = randf_range(0.0, totalProbability)
-		if(randomNum < probabilityForMaxSize):
+		if(randomNum < probabilityForMaxSize and (forceSize == -1 or forceSize==0)):
 			var canDoRight  = false
 			var canDoLeft   = false
 			var canDoUp     = false
@@ -342,7 +342,8 @@ class City extends Node:
 				if(getTile(x,y+1).tile == 0):
 					canDoDown = true
 			
-			var movementVector = Vector2i()
+			
+			var movementVector = Vector2i(0,0)
 			var numMovementPossibilities = 0
 			if(canDoUp and canDoRight):
 				movementVector = Vector2i(1,-1)
@@ -357,7 +358,9 @@ class City extends Node:
 				movementVector = Vector2i(-1,-1)
 				numMovementPossibilities+=1
 			else:
-				randomBuildingExpand(x,y)
+				randomBuildingExpand(x,y,1)
+				return
+			print(movementVector)
 			
 			var x2 = x
 			var y2 = y
@@ -380,6 +383,14 @@ class City extends Node:
 					y3 = y2
 					# TODO: fix speghetti
 					if(isContinuous):
+						tiles[y2][x2].id = tiles[y][x].id
+						tiles[y2][x2].tile = tiles[y][x].tile
+						tiles[y2][x2].sourceTile = false
+						tiles[y2][x2].sector = tiles[y][x].sector
+						tiles[y2][x2].populus = tiles[y][x].populus
+						tiles[y2][x2].height = tiles[y][x].height
+						tiles[y2][x2].size = tiles[y][x].size
+						tiles[y2][x2].buildingType = tiles[y][x].buildingType
 						for i in range(iter):
 							y3-=movementVector.y
 							x3-=movementVector.x
@@ -401,13 +412,14 @@ class City extends Node:
 							tiles[y2][x3].size = tiles[y][x].size
 							tiles[y2][x3].buildingType = tiles[y][x].buildingType
 							
-							
 					else:
 						break
 				else:
 					break
+				if randf_range(0, sqrt(density) / 2 + 2) < iter or iter > 2:
+					break
 				iter+=1
-		elif(randomNum < probabilityForMaxSize + probabilityForMedSize):
+		elif(randomNum < probabilityForMaxSize + probabilityForMedSize  and (forceSize == -1 or forceSize==1)):
 			var canDoRight  = false
 			var canDoLeft   = false
 			var canDoUp     = false
@@ -505,8 +517,11 @@ class City extends Node:
 					var rightMost = x
 					var downMost = y
 					var upMost = y
-					for y2 in range(y-1, y+2):
-						for x2 in range(x-1, x+2):
+					
+					# TODO: go down, left, and calculate using that.
+					# because this is bad and inneficieint
+					for y2 in range(y-8, y+9):
+						for x2 in range(x-8, x+9):
 							if getTile(x2,y2):
 								if(getTile(x2,y2).id == getTile(x,y).id):
 									if(y2 >= downMost and x2 <= leftMost):
