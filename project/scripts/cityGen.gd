@@ -68,7 +68,7 @@ class RoadBuilder:
 	var singlePopulusMultiplier = 2.5
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=5.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=15.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation
@@ -141,22 +141,22 @@ class RoadBuilder:
 			y+=1
 		
 	func getRandomIfOffbranch():
-		var probabilityOf3Size = 400
-		var probabilityOf5Size = (1.0 / sqrt(populus)) + 1
-		var probabilityOf7Size = 4
+		var probabilityOf3Size = 2
+		var probabilityOf5Size = 4
+		var probabilityOf7Size = 8
 		
 		if(totalIterations < 3):
 			pass
-		elif(totalIterations == 3):
+		elif(totalIterations < 4):
 			if(randf_range(0,probabilityOf3Size) < 1.0):
 				return true
-		elif(totalIterations == 5):
+		elif(totalIterations < 6):
 			if(randf_range(0,probabilityOf5Size) < 1.0):
 				return true
-		elif(totalIterations == 7):
+		elif(totalIterations < 8):
 			if(randf_range(0,probabilityOf7Size) < 1.0):
 				return true
-		elif(totalIterations == 9):
+		elif(totalIterations == 10):
 			return true
 		return false
 	
@@ -255,9 +255,9 @@ class City extends Node:
 						repr=" "
 					2:
 						if x.sourceTile:
-							repr=str(x.id%10)
+							repr="S"
 						else:
-							repr=str(x.id%10)
+							repr="B"
 					3:
 						repr="P"
 				str += repr + " "
@@ -286,9 +286,11 @@ class City extends Node:
 				if(getTile(x,y).tile == 0):
 					var sourounding = getSurroundingTilesOfType(x,y,1)
 					var countedPopullus = 0
+					var countedRoads = 1
 					for j in sourounding:
 						if(j.tile == 1):
 							countedPopullus+=j.populus
+							countedRoads+=1
 					tiles[y][x].populus = countedPopullus
 				
 	func getSurroundingTilesOfType(x,y,type):
@@ -316,7 +318,7 @@ class City extends Node:
 		# If high density, wider buildings are more likely
 		
 		
-		var probabilityForMaxSize = 1.18 ** x / 2
+		var probabilityForMaxSize = 1.18 ** x / 8
 		var probabilityForMedSize = (1.03 ** x) * 2
 		var probabilityForNoSize  = (0.94 ** x) * 8
 		
@@ -517,11 +519,12 @@ class City extends Node:
 					var rightMost = x
 					var downMost = y
 					var upMost = y
+					var highestPop = getTile(x,y).populus
 					
 					# TODO: go down, left, and calculate using that.
 					# because this is bad and inneficieint
-					for y2 in range(y-8, y+9):
-						for x2 in range(x-8, x+9):
+					for y2 in range(y-3, y+4):
+						for x2 in range(x-3, x+4):
 							if getTile(x2,y2):
 								if(getTile(x2,y2).id == getTile(x,y).id):
 									if(y2 >= downMost and x2 <= leftMost):
@@ -537,11 +540,22 @@ class City extends Node:
 										upMost=y2
 									if(y2>downMost):
 										downMost=y2
+									if(getTile(x,y).populus > highestPop):
+										highestPop = getTile(x,y).populus
 					var sizeX = rightMost-leftMost + 1
 					var sizeY = downMost-upMost + 1
-					tiles[newSourceTile.y][newSourceTile.x].size = Vector2i(sizeX,sizeY)
-					tiles[newSourceTile.y][newSourceTile.x].hasExpandedItsTiles = true
 					
+					print(sizeX, " ", sizeY)
+					
+					tiles[newSourceTile.y][newSourceTile.x].hasExpandedItsTiles = true
+					tiles[newSourceTile.y][newSourceTile.x].size = Vector2i(sizeX,sizeY)
+					#tiles[newSourceTile.y][newSourceTile.x].populus = highestPop
+					
+					var newPopulus = tiles[newSourceTile.y][newSourceTile.x].populus
+					
+					var area = sizeX * sizeY
+					var populusModifier = (newPopulus / (newPopulus + area * 60)) * area * 60
+					tiles[newSourceTile.y][newSourceTile.x].populus = populusModifier
 					
 		
 		
@@ -551,20 +565,11 @@ class City extends Node:
 	func generateRoads():
 		var roadBuilders = [
 			RoadBuilder.new(int(mapX/2),int(mapY/2),0, self),
-			RoadBuilder.new(int(mapX/2)-1,int(mapY/2),2, self)
+			RoadBuilder.new(int(mapX/2)-1,int(mapY/2),2, self),
+			
+			RoadBuilder.new(int(mapX/2),int(mapY/2)+1,1, self),
+			RoadBuilder.new(int(mapX/2),int(mapY/2)-1,3, self)
 		]
-		
-		# Spawn a plaza always in the center of the city
-		for y in range(int(mapY/2)+1, int(mapY/2)+3):
-			for x in range(int(mapX/2)-1, int(mapX/2)+2):
-				tiles[y][x].size = Vector2i(3,2)
-				tiles[y][x].tile = 2
-				tiles[y][x].id = 0
-				
-				
-		tiles[int(mapY/2)+2][int(mapX/2)-1].sourceTile=true
-		tiles[int(mapY/2)+2][int(mapX/2)-1].hasExpandedItsTiles=true
-		
 		
 		var roadBuildingIter = 0
 		while len(roadBuilders) > 0:
