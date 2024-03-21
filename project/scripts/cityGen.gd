@@ -554,7 +554,7 @@ class City extends Node:
 					var newPopulus = tiles[newSourceTile.y][newSourceTile.x].populus
 					
 					var area = sizeX * sizeY
-					var populusModifier = (newPopulus / (newPopulus + area * 60)) * area * 60
+					var populusModifier = (newPopulus / (newPopulus + area * 80)) * area * 80
 					tiles[newSourceTile.y][newSourceTile.x].populus = populusModifier
 					
 		
