@@ -185,7 +185,7 @@ func drawBuilding(length, height, width, sector):
 	
 	if(height > 3):
 		ruleset = 0
-	elif(height>1.8):
+	elif(height>1):
 		ruleset = 1
 	else:
 		if sector == 0:

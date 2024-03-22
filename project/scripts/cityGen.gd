@@ -67,8 +67,11 @@ class RoadBuilder:
 	var singlePopulusProbability = 5
 	var singlePopulusMultiplier = 2.5
 	
+	var forkFalloff = 1.1
+	var selfRoadFalloff = 1.1
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=15.0, singlePopulusModifier=1.0):
+	
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=25.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation
@@ -102,7 +105,7 @@ class RoadBuilder:
 		if(randi()%singlePopulusProbability == 0):
 			singlePopulusMultiplier=self.singlePopulusMultiplier
 		var newRoadBuilder = RoadBuilder.new(x, y, orientation, tiles, subdivision+1, forkSectorType, startingPopulus * populusMultiplier, singlePopulusMultiplier)
-		newRoadBuilder.move()
+		#newRoadBuilder.move()
 		return newRoadBuilder
 	
 	
@@ -141,22 +144,22 @@ class RoadBuilder:
 			y+=1
 		
 	func getRandomIfOffbranch():
-		var probabilityOf3Size = 2
-		var probabilityOf5Size = 4
-		var probabilityOf7Size = 8
+		var probabilityOf3Size = 25 / populus
+		var probabilityOf5Size = 1
+		var probabilityOf7Size = 1
 		
 		if(totalIterations < 3):
 			pass
-		elif(totalIterations < 4):
+		elif(totalIterations == 4):
 			if(randf_range(0,probabilityOf3Size) < 1.0):
 				return true
-		elif(totalIterations < 6):
+		elif(totalIterations == 8):
 			if(randf_range(0,probabilityOf5Size) < 1.0):
 				return true
-		elif(totalIterations < 8):
+		elif(totalIterations == 12):
 			if(randf_range(0,probabilityOf7Size) < 1.0):
 				return true
-		elif(totalIterations == 10):
+		elif(totalIterations == 16):
 			return true
 		return false
 	
@@ -164,6 +167,8 @@ class RoadBuilder:
 		totalIterations+=1
 		
 		var countedRoadType = countRoadType()
+		move()
+		
 		
 		#print(tiles.inBounds(x,y))
 		if(tiles.inBounds(x,y) and tiles.getTile(x,y).tile==0 and countedRoadType < 5):
@@ -203,7 +208,8 @@ class RoadBuilder:
 						break
 			markSelfForDeletion()
 		
-		move()
+		populus/=selfRoadFalloff
+		startingPopulus/=forkFalloff
 		return []
 
 
@@ -565,10 +571,10 @@ class City extends Node:
 	func generateRoads():
 		var roadBuilders = [
 			RoadBuilder.new(int(mapX/2),int(mapY/2),0, self),
-			RoadBuilder.new(int(mapX/2)-1,int(mapY/2),2, self),
+			RoadBuilder.new(int(mapX/2),int(mapY/2),2, self),
 			
-			RoadBuilder.new(int(mapX/2),int(mapY/2)+1,1, self),
-			RoadBuilder.new(int(mapX/2),int(mapY/2)-1,3, self)
+			RoadBuilder.new(int(mapX/2),int(mapY/2),1, self),
+			RoadBuilder.new(int(mapX/2),int(mapY/2),3, self)
 		]
 		
 		var roadBuildingIter = 0
@@ -578,6 +584,8 @@ class City extends Node:
 				var forks = i.iterate()
 				if(len(forks) > 0):
 					roadBuilders += forks
+			
+			#print(debugDrawMap())
 			
 			var i = 0
 			while i < len(roadBuilders):
