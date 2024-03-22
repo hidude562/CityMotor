@@ -127,7 +127,7 @@ func drawBuildingFromPreset(length, height, width, preset):
 	var heightAt = 0
 	var previousInsets = []
 	
-	var newPart = buildingBase.instantiate()
+	var newPart = buildingBase.instantiate().get_child(0)
 	newPart.scale = Vector3(length, width, 1)
 	
 	newPart.position -= Vector3(0, 0, (width - 1.0) * 1)
