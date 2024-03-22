@@ -67,11 +67,11 @@ class RoadBuilder:
 	var singlePopulusProbability = 5
 	var singlePopulusMultiplier = 2.5
 	
-	var forkFalloff = 1.1
+	var forkFalloff = 1.03
 	var selfRoadFalloff = 1.1
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=25.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=5.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation
@@ -160,8 +160,8 @@ class RoadBuilder:
 			if(randf_range(0,probabilityOf7Size) < 1.0):
 				return true
 		elif(totalIterations == 16):
+			markSelfForDeletion()
 			return true
-		return false
 	
 	func iterate():
 		totalIterations+=1
@@ -185,14 +185,24 @@ class RoadBuilder:
 					
 					var threewayIntersectionProbability = 15/populus + 8
 					if(randf_range(0, fourwayIntersectionProbability) < 8):
-						return [getFork(1), getFork(-1)]
+						if(randi() % 2 == 0):
+							markSelfForDeletion()
+							return [getFork(1), getFork(-1)]
+						else:
+							if(randi() % 2 == 0):
+								return [getFork(1)]
+							else:
+								return [getFork(-1)]
 					else:
 						var bendProbability = 10/populus
 						if(randf_range(0, fourwayIntersectionProbability) < 8):
 							if(randi() % 2 == 0):
+								markSelfForDeletion()
 								return [getFork(-1)]
 							else:
+								markSelfForDeletion()
 								return [getFork(1)]
+							totalIterations -= 4
 						else:
 							markSelfForDeletion()
 		else:
