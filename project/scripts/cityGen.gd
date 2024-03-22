@@ -71,7 +71,7 @@ class RoadBuilder:
 	var selfRoadFalloff = 1.1
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=5.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=25.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation
@@ -334,9 +334,9 @@ class City extends Node:
 		# If high density, wider buildings are more likely
 		
 		
-		var probabilityForMaxSize = 1.18 ** x / 8
-		var probabilityForMedSize = (1.03 ** x) * 2
-		var probabilityForNoSize  = (0.94 ** x) * 8
+		var probabilityForMaxSize = 1.15 ** x / 32
+		var probabilityForMedSize = (1.03 ** x) * 8
+		var probabilityForNoSize  = (0.94 ** x) * 32
 		
 		var totalProbability = probabilityForMaxSize + probabilityForMedSize + probabilityForNoSize
 		
