@@ -67,11 +67,11 @@ class RoadBuilder:
 	var singlePopulusProbability = 5
 	var singlePopulusMultiplier = 2.5
 	
-	var forkFalloff = 1.06
-	var selfRoadFalloff = 1.1
+	var forkFalloff = 1.1
+	var selfRoadFalloff = 1.2
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=15.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=20.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation
@@ -176,15 +176,15 @@ class RoadBuilder:
 			
 			# Whether to fork a new road
 			if(getRandomIfOffbranch()):
-				var fourwayIntersectionProbability = 20/populus + 8
+				var fourwayIntersectionProbability = 10.0/populus + 8
 				if(randf_range(0, fourwayIntersectionProbability) < 8):
 					# A 4 way intersection
 					return [getFork(1), getFork(-1), getFork(0)]
 				else:
 					# Only 3 way intersection
 					
-					var threewayIntersectionProbability = 15/populus + 8
-					if(randf_range(0, fourwayIntersectionProbability) < 8):
+					var threewayIntersectionProbability = 8/populus + 8
+					if(randf_range(0, threewayIntersectionProbability) < 8):
 						if(randi() % 2 == 0):
 							markSelfForDeletion()
 							return [getFork(1), getFork(-1)]
@@ -194,8 +194,8 @@ class RoadBuilder:
 							else:
 								return [getFork(-1)]
 					else:
-						var bendProbability = 10/populus
-						if(randf_range(0, fourwayIntersectionProbability) < 8):
+						var bendProbability = 1.0/populus
+						if(randf_range(0, bendProbability) < 8):
 							if(randi() % 2 == 0):
 								markSelfForDeletion()
 								return [getFork(-1)]
@@ -334,7 +334,7 @@ class City extends Node:
 		# If high density, wider buildings are more likely
 		
 		
-		var probabilityForMaxSize = 1.15 ** x / 32
+		var probabilityForMaxSize = 1.19 ** x / 64
 		var probabilityForMedSize = (1.03 ** x) * 8
 		var probabilityForNoSize  = (0.94 ** x) * 32
 		
@@ -512,6 +512,21 @@ class City extends Node:
 	# The source of buildings from where to grow from
 	func createBuildingTiles():
 		for i in range(mapX*mapY * 10):
+			var x = randi() % self.mapX
+			var y = randi() % self.mapY
+			if(tiles[y][x].tile == 0):
+				if(getIfRandomHouse(x,y) and getSurroundingTilesOfType(x,y,1).size() > 4):
+					tiles[y][x].sourceTile = true
+					tiles[y][x].tile = 2
+					
+					var roadTiles = getSurroundingTilesOfType(x,y,1)
+					tiles[y][x].sector = roadTiles[randi()%len(roadTiles)].sector
+					tiles[y][x].setID(idCounter)
+					idCounter+=1
+					
+					randomBuildingExpand(x,y)
+		
+		for i in range(mapX*mapY * 100):
 			var x = randi() % self.mapX
 			var y = randi() % self.mapY
 			if(tiles[y][x].tile == 0):

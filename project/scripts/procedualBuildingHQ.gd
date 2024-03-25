@@ -137,7 +137,6 @@ func drawBuildingFromPreset(length, height, width, preset):
 		newPart.depth = section.height
 		# TODO no negative for clarity
 		#newPart.position= -Vector3((length - 1.0) / -2.0, -heightAt, (width - 1.0) / 2.0)
-		print(newPart.depth )
 		newPart.position.y=heightAt
 		
 		var insets = section.prefab.getInsets()
@@ -155,11 +154,11 @@ func drawBuilding(length, height, width, sector):
 	
 	var skyscraperPreset = FullBuildingPrefab.new(
 		[
-			BuildingSectionPrefab.new(0.4, 0, 0),
-			BuildingSectionPrefab.new(-1, 1, 3, 1.5,2,0.1,0.2),
-			BuildingSectionPrefab.new(-1, 1, 3, 1.5,2,0.1,0.2),
-			BuildingSectionPrefab.new(-1, 1, 3, 1.5,2,0.1,0.2),
-			BuildingSectionPrefab.new(-1, 1, 3, 1.5,2,0.1,0.2)
+			BuildingSectionPrefab.new(0.4, 0, 0, 1.5,2,0.1,0.1),
+			BuildingSectionPrefab.new(-1, 0, 2, 1.5,2,0.1,0.2),
+			BuildingSectionPrefab.new(-1, 1, 2, 1.5,2,0.1,0.2),
+			BuildingSectionPrefab.new(-1, 0, 2, 1.5,2,0.1,0.2),
+			BuildingSectionPrefab.new(-1, 1, 2, 1.5,2,0.1,0.2)
 		]
 	)
 	
@@ -191,7 +190,7 @@ func drawBuilding(length, height, width, sector):
 		ruleset = 1
 	else:
 		if sector == 0:
-			ruleset = 1
+			ruleset = 2
 			#height+=1
 		else:
 			ruleset = 1

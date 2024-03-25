@@ -11,7 +11,7 @@ func _ready():
 	var map = Globals.currentCity
 	
 	if Globals.currentCity == null:
-		map = get_node("/root/root").City.new(20, 20, -1)
+		map = get_node("/root/root").City.new(60, 60, -1)
 		Globals.currentCity = map
 	map.debugDrawMap()
 	
@@ -59,7 +59,7 @@ func _ready():
 				var instance = scene.instantiate()
 				add_child(instance)
 				instance.global_position = Vector3(i, 0, j)
-				instance.drawBuilding(map.tiles[j][i].size.x,map.tiles[j][i].populus / 10 + 0.2,map.tiles[j][i].size.y, map.tiles[j][i].sector)
+				instance.drawBuilding(map.tiles[j][i].size.x,map.tiles[j][i].populus / 10 + 0.5,map.tiles[j][i].size.y, map.tiles[j][i].sector)
 			elif map.tiles[j][i].tile == 0:
 				var scene = procedualNothing
 				var instance = scene.instantiate()
