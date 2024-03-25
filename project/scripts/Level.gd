@@ -11,7 +11,7 @@ func _ready():
 	var map = Globals.currentCity
 	
 	if Globals.currentCity == null:
-		map = get_node("/root/root").City.new(25, 25, -1)
+		map = get_node("/root/root").City.new(20, 20, -1)
 		Globals.currentCity = map
 	map.debugDrawMap()
 	

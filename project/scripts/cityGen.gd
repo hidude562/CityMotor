@@ -67,11 +67,11 @@ class RoadBuilder:
 	var singlePopulusProbability = 5
 	var singlePopulusMultiplier = 2.5
 	
-	var forkFalloff = 1.03
+	var forkFalloff = 1.06
 	var selfRoadFalloff = 1.1
 	
 	
-	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=25.0, singlePopulusModifier=1.0):
+	func _init(x,y,orientation,tiles, subdivision=1, sectorType=0, startingPopulus=15.0, singlePopulusModifier=1.0):
 		self.x = x
 		self.y = y
 		self.orientation = orientation

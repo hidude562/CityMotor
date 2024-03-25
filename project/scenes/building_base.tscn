@@ -6,10 +6,11 @@
 
 [node name="buildingBase" type="CSGPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, 0, -0.5)
-operation = 2
+operation = 1
 
 [node name="inset0" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(1.91069e-15, -4.37114e-07, 1, -1, -4.37114e-07, 0, 4.37114e-08, -10, -4.37114e-08, 1, 1, 0)
+visible = false
 operation = 2
 polygon = PackedVector2Array(0, 0, 1, 2, 1, 1, 1, 0)
 depth = 0.01
