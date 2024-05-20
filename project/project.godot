@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Globals="*res://scripts/Globals.gd"
 
+[dotnet]
+
+project/assembly_name="City gen"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

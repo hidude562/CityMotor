@@ -1,7 +1,7 @@
 extends Node3D
 
 var buildingBase = preload("res://scenes/building_base.tscn")
-
+var materials = [preload("res://buildingTextures/dense50s.tres"), preload("res://buildingTextures/roofBasic.tres")]
 class Inset:
 	var angle
 	var depth
@@ -28,7 +28,8 @@ class BuildingSectionPrefab:
 	# 2 = normal even
 	var angledInsetsWeighting
 	var nonSlantedCornerProbability
-	func _init(heightMax=-1, minInsets=0, maxInsets=2, probForInsets=2, angledInsetsWeighting=2, minInsetDepth=0.1, maxInsetDepth=0.3, nonSlantedCornerProbability=2):
+	var buildingMats
+	func _init(heightMax=-1, minInsets=0, maxInsets=2, probForInsets=2, angledInsetsWeighting=2, minInsetDepth=0.1, maxInsetDepth=0.3, nonSlantedCornerProbability=2, buildingMats=["dense50s.tres", "roofBasic.tres"]):
 		self.probsForInsets = probForInsets
 		self.angledInsetsWeighting = angledInsetsWeighting
 		self.maxInsets = maxInsets
@@ -37,6 +38,7 @@ class BuildingSectionPrefab:
 		self.maxInsetDepth = maxInsetDepth
 		self.heightMax = heightMax
 		self.nonSlantedCornerProbability = nonSlantedCornerProbability
+		self.buildingMats = buildingMats
 	
 	func getInsets():
 		var insets = []
@@ -135,6 +137,7 @@ func drawBuildingFromPreset(length, height, width, preset):
 	
 	for section in fullBuilding.sections:
 		newPart.depth = section.height
+		newPart.material.set_next_pass(materials[1])
 		# TODO no negative for clarity
 		#newPart.position= -Vector3((length - 1.0) / -2.0, -heightAt, (width - 1.0) / 2.0)
 		newPart.position.y=heightAt
@@ -143,6 +146,10 @@ func drawBuildingFromPreset(length, height, width, preset):
 		
 		for inset in insets:
 			sideInset(inset, newPart)
+		
+		var childrenNewPart = newPart.get_children()
+		for i in childrenNewPart:
+			i.material.set_next_pass(materials[1])
 		
 		add_child(newPart)
 		

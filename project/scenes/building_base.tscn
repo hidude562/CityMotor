@@ -1,12 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj0pbr8j120ty"]
+[gd_scene load_steps=4 format=3 uid="uid://bj0pbr8j120ty"]
 
 [ext_resource type="ArrayMesh" uid="uid://blwt6ek5neg0o" path="res://scenes/Objects/Buildings/gabledBase.obj" id="1_26bai"]
+[ext_resource type="Material" uid="uid://bp7va4ivqn5el" path="res://buildingTextures/dense50s.tres" id="1_klrk3"]
+[ext_resource type="Material" uid="uid://1mbypdflci7i" path="res://buildingTextures/roofBasic.tres" id="3_sd4nd"]
 
 [node name="root" type="Node3D"]
 
 [node name="buildingBase" type="CSGPolygon3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, 0, -0.5)
 operation = 1
+material = ExtResource("1_klrk3")
 
 [node name="inset0" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(1.91069e-15, -4.37114e-07, 1, -1, -4.37114e-07, 0, 4.37114e-08, -10, -4.37114e-08, 1, 1, 0)
@@ -14,72 +17,84 @@ visible = false
 operation = 2
 polygon = PackedVector2Array(0, 0, 1, 2, 1, 1, 1, 0)
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="inset45" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(-0.707107, -7.462e-07, 0.707107, -0.707107, -3.09086e-07, -0.707107, 7.462e-08, -10, -3.09086e-08, 1.35, 0.35, 0)
 visible = false
 operation = 2
 depth = 0.08
+material = ExtResource("1_klrk3")
 
 [node name="inset90" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(-1, 8.74228e-07, -3.82137e-15, 0, -4.37114e-07, -1, -8.74228e-08, -10, 4.37114e-08, 1, 0, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="inset135" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(-0.707107, 7.462e-07, -0.707107, 0.707107, -3.09086e-07, -0.707107, -7.462e-08, -10, -3.09086e-08, 0.35, -0.35, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="inset180" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(1.91069e-15, 4.37114e-07, -1, 1, -4.37114e-07, 0, -4.37114e-08, -10, -4.37114e-08, 0, 0, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="inset225" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(0.707107, 1.28028e-07, -0.707107, 0.707107, -3.09086e-07, 0.707107, -1.28028e-08, -10, -3.09086e-08, -0.355, 0.65, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="inset270" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-07, 1, 0, -10, -4.37114e-08, 0, 1, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="inset315" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(0.707107, -1.28028e-07, 0.707107, -0.707107, -3.09086e-07, 0.707107, 1.28028e-08, -10, -3.09086e-08, 0.65, 1.35, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="corner0" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(1.1, 0, 0, 0, -4.80825e-07, 1.1, 0, -11, -4.80825e-08, -0.5, 1, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="corner90" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(1.91069e-15, -4.37114e-07, 1, -1, -4.37114e-07, 0, 4.37114e-08, -10, -4.37114e-08, 1, 1.5, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="corner180" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(-1, 8.74228e-07, -3.82137e-15, 0, -4.37114e-07, -1, -8.74228e-08, -10, 4.37114e-08, 1.5, 0, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="corner270" type="CSGPolygon3D" parent="buildingBase"]
 transform = Transform3D(1.91069e-15, 4.37114e-07, -1, 1, -4.37114e-07, 0, -4.37114e-08, -10, -4.37114e-08, 0, -0.5, 0)
 visible = false
 operation = 2
 depth = 0.01
+material = ExtResource("1_klrk3")
 
 [node name="Gabled" type="CSGMesh3D" parent="buildingBase"]
 transform = Transform3D(1, 0, 0, 0, -4.80825e-08, 1, 0, -1.1, -4.37114e-08, 0.5, 0.5, 0)
@@ -87,3 +102,4 @@ visible = false
 operation = 2
 snap = 0.01
 mesh = ExtResource("1_26bai")
+material = ExtResource("3_sd4nd")
